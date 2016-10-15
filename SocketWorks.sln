@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSDNSoket", "MSDNSoket\MSDNSoket.csproj", "{0679427E-D9CA-4992-991E-7CEB475CDE8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListenerSocket", "ListenerSocket\ListenerSocket.csproj", "{5B77767C-1C86-40CD-925B-370C2119336D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0679427E-D9CA-4992-991E-7CEB475CDE8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0679427E-D9CA-4992-991E-7CEB475CDE8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0679427E-D9CA-4992-991E-7CEB475CDE8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0679427E-D9CA-4992-991E-7CEB475CDE8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B77767C-1C86-40CD-925B-370C2119336D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B77767C-1C86-40CD-925B-370C2119336D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B77767C-1C86-40CD-925B-370C2119336D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B77767C-1C86-40CD-925B-370C2119336D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
