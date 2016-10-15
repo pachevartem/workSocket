@@ -1,50 +1,33 @@
-﻿using DataSt;
-using System;
+﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using DataSt;
 
 // State object for reading client data asynchronously
 public class StateObject
 {
-  // Client  socket.
+  public StateObject(Socket _s)
+  {
+    workSocket = _s;
+  }
   public Socket workSocket = null;
-  // Size of receive buffer.
-  public const int BufferSize = 1024;
-  // Receive buffer.
+  public const int BufferSize = 282;
   public byte[] buffer = new byte[BufferSize];
-  // Received data string.
-  public StringBuilder sb = new StringBuilder();
+ // public MemoryStream ms = new MemoryStream(new byte[BufferSize]);
 }
 
 public class AsynchronousSocketListener
 {
-  // Thread signal.
   public static ManualResetEvent allDone = new ManualResetEvent(false);
-
-  public AsynchronousSocketListener()
-  {
-  }
-
+  
   public static void StartListening()
   {
-    // Data buffer for incoming data.
-    byte[] bytes = new Byte[1024];
+    IPEndPoint localEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"),11000);
+    Socket listener = new Socket(AddressFamily.InterNetwork,SocketType.Stream, ProtocolType.Tcp);
 
-    // Establish the local endpoint for the socket.
-    // The DNS name of the computer
-    // running the listener is "host.contoso.com".
-    IPHostEntry ipHostInfo = Dns.Resolve("localhost");
-    IPAddress ipAddress = ipHostInfo.AddressList[0];
-    Console.WriteLine(ipAddress);
-    IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
-
-    // Create a TCP/IP socket.
-    Socket listener = new Socket(AddressFamily.InterNetwork,
-        SocketType.Stream, ProtocolType.Tcp);
-
-    // Bind the socket to the local endpoint and listen for incoming connections.
     try
     {
       listener.Bind(localEndPoint);
@@ -57,10 +40,7 @@ public class AsynchronousSocketListener
 
         // Start an asynchronous socket to listen for connections.
         Console.WriteLine("Waiting for a connection...");
-        listener.BeginAccept(
-            new AsyncCallback(AcceptCallback),
-            listener);
-
+        listener.BeginAccept( new AsyncCallback(AcceptCallback), listener);
         // Wait until a connection is made before continuing.
         allDone.WaitOne();
       }
@@ -86,51 +66,34 @@ public class AsynchronousSocketListener
     Socket handler = listener.EndAccept(ar);
 
     // Create the state object.
-    StateObject state = new StateObject();
-    state.workSocket = handler;
+    StateObject state = new StateObject(handler);
     handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
         new AsyncCallback(ReadCallback), state);
+     
   }
 
   public static void ReadCallback(IAsyncResult ar)
   {
-    String content = String.Empty;
+    Data _data;
 
     // Retrieve the state object and the handler socket
     // from the asynchronous state object.
     StateObject state = (StateObject)ar.AsyncState;
     Socket handler = state.workSocket;
 
-    content = Data.Deserialize(state.buffer).ToString();
-    Console.WriteLine(content);
     // Read data from the client socket. 
-    //int bytesRead = handler.EndReceive(ar);
+    int bytesRead = handler.EndReceive(ar);
+    
 
-    //if(bytesRead > 0)
-    //{
-    //  // There  might be more data, so store the data received so far.
-    //  state.sb.Append(Encoding.ASCII.GetString(
-    //      state.buffer, 0, bytesRead));
+    if(bytesRead > 0)
+    {
 
-    //  // Check for end-of-file tag. If it is not there, read 
-    //  // more data.
-    //  content = state.sb.ToString();
-    //  if(content.IndexOf("<EOF>") > -1)
-    //  {
-    //    // All the data has been read from the 
-    //    // client. Display it on the console.
-    //    Console.WriteLine("Read {0} bytes from socket. \n Data : {1}",
-    //        content.Length, content);
-    //    // Echo the data back to the client.
-    //    Send(handler, content);
-    //  }
-    //  else
-    //  {
-    //    // Not all data received. Get more.
+     _data = Data.Deserialize(state.buffer);
+      Console.WriteLine(_data);
+    }
+    // Not all data received. Get more.
     handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
     new AsyncCallback(ReadCallback), state);
-    //  }
-    //}
   }
 
   private static void Send(Socket handler, String data)

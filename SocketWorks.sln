@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSDNSoket", "MSDNSoket\MSDN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListenerSocket", "ListenerSocket\ListenerSocket.csproj", "{5B77767C-1C86-40CD-925B-370C2119336D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsynkServer", "AsynkServer\AsynkServer.csproj", "{EDF9FD22-2E3E-44CB-9956-9CD6C54DA8F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcyncClient", "AcyncClient\AcyncClient.csproj", "{BB41F74B-E5B1-48E7-920A-BA041D6D6393}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{5B77767C-1C86-40CD-925B-370C2119336D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B77767C-1C86-40CD-925B-370C2119336D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B77767C-1C86-40CD-925B-370C2119336D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDF9FD22-2E3E-44CB-9956-9CD6C54DA8F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF9FD22-2E3E-44CB-9956-9CD6C54DA8F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF9FD22-2E3E-44CB-9956-9CD6C54DA8F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF9FD22-2E3E-44CB-9956-9CD6C54DA8F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB41F74B-E5B1-48E7-920A-BA041D6D6393}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB41F74B-E5B1-48E7-920A-BA041D6D6393}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB41F74B-E5B1-48E7-920A-BA041D6D6393}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB41F74B-E5B1-48E7-920A-BA041D6D6393}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
